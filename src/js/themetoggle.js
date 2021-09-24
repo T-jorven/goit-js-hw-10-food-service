@@ -13,18 +13,23 @@ themeToggle.addEventListener("change", changeTheme);
 
 
 //FUNCTIONS
-const setLightTheme = () => {
-  document.body.classList.remove(theme.DARK)
-  document.body.classList.add(theme.LIGHT)
-  localStorage.setItem(THEME_KEY, theme.LIGHT)
-  themeToggle.checked = false
+
+const themesChange = (prevTheme, newTheme, itemKey, status) => {
+  document.body.classList.remove(prevTheme)
+  document.body.classList.add(newTheme)
+  localStorage.setItem(itemKey, newTheme)
+  themeToggle.checked = status
+
 }
 
+
+const setLightTheme = () => {
+ themesChange(theme.DARK, theme.LIGHT, THEME_KEY, false)
+}
+
+
 const setDarkTheme = () => {
-  document.body.classList.remove(theme.LIGHT)
-  document.body.classList.add(theme.DARK)
-  localStorage.setItem(THEME_KEY, theme.DARK)
-  themeToggle.checked = true
+ themesChange(theme.LIGHT, theme.DARK, THEME_KEY, true)
 }
 
 //on toggle state change
